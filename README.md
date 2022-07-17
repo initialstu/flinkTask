@@ -12,7 +12,7 @@ report(transactions).executeInsert(“spend_report”);将 transactions 表经�
 配置文件位于 flink-playgrounds 仓库中，首先检出该仓库并构建 Docker 镜像：
 > git clone  https://github.com/apache/flink-playgrounds.git
 
-# 修改代码
+## 修改代码
 * 找到 SpendReport.java
 * 实现方法 public static Table report(Table transactions)
 ```java
@@ -29,7 +29,7 @@ public static Table report(Table transactions) {
 }
 ```
 
-# 构建docker镜像
+## 构建docker镜像
 * 启动docker服务（windows打开docker desktop即可）
 * 进入目录
 > cd flink-playgrounds/table-walkthrough
@@ -37,3 +37,21 @@ public static Table report(Table transactions) {
 > docker-compose build
 * 启动服务环境
 > docker-compose up -d
+* 查看启动服务
+> docker ps
+
+## 查看和验证
+* Flink WebUI
+> http://localhost:8082
+* 查看日志
+> docker-compose logs -f jobmanager
+> 
+> docker-compose logs -f taskmanager
+* 查看mysql表数据更新
+> docker-compose exec mysql mysql -Dsql-demo -usql-demo -pdemo-sql
+> 
+> mysql> use sql-demo;
+> 
+> mysql> select count(*) from spend_report;
+* Grafana查看监控
+> http://localhost:3000/d/FOe0PbmGk/walkthrough?viewPanel=2&orgId=1&refresh=5s
