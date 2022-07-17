@@ -55,3 +55,7 @@ public static Table report(Table transactions) {
 > mysql> select count(*) from spend_report;
 * Grafana查看监控
 > http://localhost:3000/d/FOe0PbmGk/walkthrough?viewPanel=2&orgId=1&refresh=5s
+
+## 结束
+* 关闭服务环境
+> docker-compose down -v
