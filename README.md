@@ -35,27 +35,44 @@ public static Table report(Table transactions) {
 > cd flink-playgrounds/table-walkthrough
 * 编译打包代码（windows执行踩坑，代码中换行符如果是\r\n，则在build时会报错，主要是执行到mvn spotless:check代码格式化检查时会报错。需要把代码中换行符改为\n，然后build可以成功）
 > docker-compose build
+
+![docker-build](docker-build.jpg)
 * 启动服务环境
 > docker-compose up -d
+
+![docker-up](docker-up.jpg)
 * 查看启动服务
 > docker ps
+
+![docker-ps](docker-ps.jpg)
 
 ## 查看和验证
 * Flink WebUI
 > http://localhost:8082
+
+![flink-overview](flink-overview.jpg)
+![flink-job](flink-job.jpg)
 * 查看日志
 > docker-compose logs -f jobmanager
 > 
 > docker-compose logs -f taskmanager
+
+![flink-log](flink-log.jpg)
 * 查看mysql表数据更新
 > docker-compose exec mysql mysql -Dsql-demo -usql-demo -pdemo-sql
 > 
 > mysql> use sql-demo;
 > 
 > mysql> select count(*) from spend_report;
+
+![mysql-update](mysql-update.jpg)
 * Grafana查看监控
 > http://localhost:3000/d/FOe0PbmGk/walkthrough?viewPanel=2&orgId=1&refresh=5s
+
+![grafana](grafana.jpg)
 
 ## 结束
 * 关闭服务环境
 > docker-compose down -v
+
+![docker-down](docker-down.jpg)
